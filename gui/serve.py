@@ -1,6 +1,8 @@
 import customtkinter as ctk
 import socket
 import os
+import subprocess
+import threading
 
 class ServeTab(ctk.CTkFrame):
     def __init__(self, master, **kwargs):
@@ -76,4 +78,9 @@ class ServeTab(ctk.CTkFrame):
             self.serve_btn.configure(state="disabled")
 
     def serve(self):
-        print(f"Starting server for: {self.selected_file}")
+        thread = threading.Thread(target=self.run_server, daemon=True)
+        thread.start()
+        self.serve_btn.configure(text="Serving...", state="disabled")
+        
+    def run_server(self):
+        subprocess.run(["bin/serve", self.selected_file])

@@ -19,7 +19,8 @@ tabview.add("Serve")
 tabview.tab("Get").grid_columnconfigure(0, weight=1)
 tabview.tab("Get").grid_columnconfigure(1, weight=1)
 
-get_tab(tabview.tab("Get"))
+get_instance = GetTab(tabview.tab("Get"))
+get_instance.pack(fill="both", expand=True)
 serve_instance = ServeTab(tabview.tab("Serve"))
 serve_instance.pack(fill="both", expand=True)
 
