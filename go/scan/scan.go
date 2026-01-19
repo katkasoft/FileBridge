@@ -27,7 +27,7 @@ func getUserIP() string {
 
 func getHostname(ip string) string {
 	client := http.Client{
-		Timeout: 2 * time.Second,
+		Timeout: 5 * time.Second,
 	}
 
 	url := fmt.Sprintf("http://%s:1928/hostname", ip)
