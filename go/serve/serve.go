@@ -19,5 +19,14 @@ func main() {
 		fmt.Fprint(w, short_filename)
 	})
 
+	http.HandleFunc("/hostname", func(w http.ResponseWriter, r *http.Request) {
+		hostname, err := os.Hostname()
+		if err != nil {
+			fmt.Fprint(w, " ")
+			return
+		}
+		fmt.Fprint(w, hostname)
+	})
+
 	http.ListenAndServe(":1928", nil)
 }
